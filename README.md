@@ -62,3 +62,19 @@ Array
 - Hash for base
 - Bounds check
 - offset calculation
+
+## Memory Vs Calldata
+
+🔹 Memory (Mutable):
+
+ 1. Data is copied from calldata into memory and ABI decode calldata
+ 2. Allocate memory
+ 3. Copy calldata → memory
+ 4. Loop over memory (MLOAD)
+ 5. Memory expansion cost
+
+🔹 Calldata (read only/Immutable):
+
+ 1. ABI decode references
+ 2. Loop directly over calldata (CALLDATALOAD)
+ 3. No memory growth
