@@ -48,3 +48,17 @@ mapping(uint256 => uint256) map; // slot 1
 // Each value stored at: keccak256(abi.encode(key, uint256(1)))
 // NO length, NO iteration and NO contiguous storage
 ```
+
+Read operation for **mapping** is cheaper than **array** because
+
+Mapping
+
+- one hash
+- one SLOAD
+- No bound check
+
+Array
+
+- Hash for base
+- Bounds check
+- offset calculation
