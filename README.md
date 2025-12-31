@@ -78,3 +78,36 @@ Array
  1. ABI decode references
  2. Loop directly over calldata (CALLDATALOAD)
  3. No memory growth
+
+## Error Vs Require
+
+### ABI encoding
+
+#### Revert String
+
+```go
+Error(string)
+→ selector + offset + length + string bytes
+```
+
+require("string")
+
+- Stores string literal in bytecode
+- ABI-encodes the string at runtime
+- Larger deployment bytecode
+- Higher revert gas
+
+#### Custom Error
+
+```go
+ErrorName(type1,type2)
+→ selector + encoded args
+```
+
+revert CustomError()
+
+- Stores error selector only
+- Encodes arguments (if any)
+- No string storage
+- Much smaller bytecode
+- Cheaper runtime revert
